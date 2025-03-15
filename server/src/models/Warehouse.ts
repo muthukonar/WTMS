@@ -1,82 +1,48 @@
-//Todo: edit with Muthu's code
-
 import { Schema, model, Document } from 'mongoose';
 
-//! Muthu Code - Below
-// const mongoose = require('mongoose');
-// const warehouseSchema = new mongoose.Schema({
-//     name: {
-//         type: String,
-//         required: true
-//     },
-//     location: {
-//         type: String,
-//         required: true
-//     },
-//     capacity: {
-//         type: Number,
-//         required: true
-//     },
-//     items: [{
-//         itemName: {
-//             type: String,
-//             required: true
-//         },
-//         quantity: {
-//             type: Number,
-//             required: true
-//         },
-//         arrivalDate: {
-//             type: Date,
-//             required: true
-//         }
-//     }]
-// });
-// const Warehouse = mongoose.model('Warehouse', 
-// warehouseSchema);
-// module.exports = Warehouse;
-
-
-
-//! Original Code - Below
+interface IItem {
+  itemName: string;
+  quantity: number;
+  arrivalDate: Date;
+}
 
 interface IWarehouse extends Document {
-  make: string;
-  imodel: string;
-  year: number;
-  size: string;
-  miles: number;
-  driver?: string | null;
+  name: string;
+  location: string;
+  capacity: number;
+  items: IItem[];
 }
 
 const warehouseSchema = new Schema<IWarehouse>(
   {
-    make: {
-      type: String,
-      required: true,
-      trim: true,
+    name: { 
+      type: String, 
+      required: true 
     },
-    imodel: {
-      type: String,
-      required: true,
-      trim: true,
+    location: { 
+      type: String, 
+      required: true 
     },
-    year: {
-      type: Number,
-      required: true,
+    capacity: {
+       type: Number,
+      required: true 
     },
-    size:{
-        type:String,
-        required:true
-    },
-    miles:{
-        type:Number,
-        required:true
-    },
-    driver:{
-        type:String,
-        required:false
-    }
+    items: [
+      {
+        itemName: {
+           type: String,
+           required: true 
+          },
+        quantity: {
+           type: Number, 
+           required: true 
+          },
+        arrivalDate: {
+           type: Date, 
+           required: true 
+          },
+      },
+    ],
   },
   {
     timestamps: true,
@@ -85,10 +51,6 @@ const warehouseSchema = new Schema<IWarehouse>(
   }
 );
 
-
-
-
-
-const Warehouse = model<IWarehouse>('User', warehouseSchema);
+const Warehouse = model<IWarehouse>('Warehouse', warehouseSchema);
 
 export default Warehouse;

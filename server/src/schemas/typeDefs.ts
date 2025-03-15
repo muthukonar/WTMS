@@ -6,12 +6,15 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+    role: String
+    status: String
   }
 
   input UserInput {
     username: String!
     email: String!
     password: String!
+    role: String!  
   }
   
   type Auth {

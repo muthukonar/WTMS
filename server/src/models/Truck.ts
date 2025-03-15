@@ -1,71 +1,40 @@
 import { Schema, model, Document } from 'mongoose';
-
-
-//! Muthu Code - Below
-// const mongoose = require('mongoose');
-// const truckSchema = new mongoose.Schema({
-//     truckId: {
-//         type: String,
-//         required: true,
-//         unique: true
-//     },
-//     driverName: {
-//         type: String,
-//         required: true
-//     },
-//     status: {
-//         type: String,
-//         enum: ['Available', 'In Transit'],
-//         default: 'Available'
-//     },
-//     assignedWarehouse: {
-//         type: mongoose.Schema.Types.ObjectId,
-//         ref: 'Warehouse'
-//     }
-// });
-// const Truck = mongoose.model('Truck', truckSchema);
-// module.exports = Truck;
-
-
-
+import mongoose from 'mongoose';
 
 interface ITruck extends Document {
-  make: string;
-  tmodel: string;
-  year: number;
-  size: string;
-  miles: number;
-  driver?: string | null;
+  truckId: string;
+  truckName: string;
+  truckCapacity: number;
+  driverName: string;
+  status: 'Available' | 'In Transit';
+  assignedWarehouse: mongoose.Types.ObjectId;
 }
 
 const truckSchema = new Schema<ITruck>(
   {
-    make: {
+    truckId: { 
       type: String,
-      required: true,
-      trim: true,
+      required: true, 
+      unique: true 
     },
-    tmodel: {
+    truckName: { 
       type: String,
-      required: true,
-      trim: true,
+      required: true, 
     },
-    year: {
+    truckCapacity: { 
       type: Number,
-      required: true,
     },
-    size:{
-        type:String,
-        required:true
+    driverName: { 
+      type: String, 
+      required: true 
     },
-    miles:{
-        type:Number,
-        required:true
-    },
-    driver:{
-        type:String,
-        required:false
-    }
+    status: {
+       type: String,
+       enum: ['Available', 'In Transit'], default: 'Available' 
+      },
+    assignedWarehouse: {
+       type: mongoose.Schema.Types.ObjectId, ref: 'Warehouse' 
+      },
   },
   {
     timestamps: true,
@@ -74,10 +43,6 @@ const truckSchema = new Schema<ITruck>(
   }
 );
 
-
-
-
-
-const Truck = model<ITruck>('User', truckSchema);
+const Truck = model<ITruck>('Truck', truckSchema);
 
 export default Truck;

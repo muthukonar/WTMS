@@ -7,7 +7,7 @@ interface AddUserArgs {
     username: string;
     email: string;
     password: string;
-    role: string;
+    role: 'Admin' | 'Manager' | 'Driver';
   }
 }
 
@@ -24,10 +24,10 @@ interface UserArgs {
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find();
     },
     user: async (_parent: any, { username }: UserArgs) => {
-      return User.findOne({ username }).populate('thoughts');
+      return User.findOne({ username });
     },
 
     // Query to get the authenticated user's information
@@ -35,7 +35,7 @@ const resolvers = {
     me: async (_parent: any, _args: any, context: any) => {
       // If the user is authenticated, find and return the user's information along with their thoughts
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id });
       }
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError('Could not authenticate user.');
