@@ -1,0 +1,78 @@
+# Name of workflow
+name: Lint, Build, and Test Workflow
+
+# Trigger workflow on all pull requests to the develop branch
+on:
+  pull_request:
+    branches:
+      - develop
+
+# Jobs to carry out
+jobs:
+  # Linting job
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Use Node.js 21.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21.x
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Run linting
+      - name: Run Lint
+        run: npm run lint
+
+  # Building job
+  build:
+    runs-on: ubuntu-latest
+    needs: lint # Cannot continue without the lint job
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Use Node.js 21.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21.x
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Run build
+      - name: Run Build
+        run: npm run build
+
+  # Testing job
+  test:
+    runs-on: ubuntu-latest
+    needs: build # Cannot continue without the build job
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Use Node.js 21.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21.x
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Run tests
+      - name: Run Tests
+        run: npm run test

@@ -1,8 +1,13 @@
 import db from '../config/connection.js';
-import { User } from '../models/index.js';
+import { User, Warehouse, Truck } from '../models/index.js';
+//
+//
 import cleanDB from './cleanDB.js';
 
 import userData from './userData.json' assert { type: 'json'};
+//
+import truckData from './truckData.json' assert { type: 'json'};
+import warehouseData from './warehouseData.json' assert { type: 'json'};
 
 
 const seedDatabase = async (): Promise<void> => {
@@ -11,12 +16,16 @@ const seedDatabase = async (): Promise<void> => {
     await cleanDB();
     
     await User.create(userData);
-    console.log('Seeding completed successfully!');
+    await Truck.create(truckData);
+    await Warehouse.create(warehouseData);
+    console.log('Seeding User Table completed successfully!');
     process.exit(0);
   } catch (error) {
     console.error('Error seeding database:', error);
     process.exit(1);
   }
+  
+
 }
 
 seedDatabase();

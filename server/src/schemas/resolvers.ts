@@ -7,6 +7,7 @@ interface AddUserArgs {
     username: string;
     email: string;
     password: string;
+    role: string;
   }
 }
 
@@ -46,7 +47,7 @@ const resolvers = {
       const user = await User.create({ ...input });
     
       // Sign a token with the user's information
-      const token = signToken(user.username, user.email, user._id);
+      const token = signToken(user.username, user.email, user._id, user.role);
     
       // Return the token and the user
       return { token, user };
@@ -70,7 +71,7 @@ const resolvers = {
       }
     
       // Sign a token with the user's information
-      const token = signToken(user.username, user.email, user._id);
+      const token = signToken(user.username, user.email, user._id, user.role);
     
       // Return the token and the user
       return { token, user };

@@ -12,6 +12,7 @@
     "client:build": "cd client && npm run build",
     "client:dev": "cd client && npm run dev",
     "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
+    "lint": "eslint src --ext js,tsx --report-unused-disable-directives --max-warnings 0",
     "seed": "cd server && npm run seed",
     "render-build": "npm install && npm run build",
     "render-start": "npm run server",

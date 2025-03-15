@@ -2,16 +2,55 @@
     {
         "username": "JollyGuru",
         "email": "jolly@guru.com",
-        "password": "password"
+        "password": "password",
+        "role": "admin"
     },
     {
-        "username": "SunnyScribe",
-        "email": "sunny@scribe.com",
-        "password": "password"
+        "username": "Trucker",
+        "email": "trucker@test.com",
+        "password": "password",
+        "role": "truck"
     },
     {
         "username": "RadiantComet",
         "email": "radiant@comet.com",
-        "password": "password"
+        "password": "password",
+        "role": "wh"
+    },
+    {
+        "username": "admin",
+        "email": "admin@test.com",
+        "password": "password",
+        "role": "admin"
+    },
+    {
+        "username": "muthu",
+        "email": "muthu@test.com",
+        "password": "password",
+        "role": "admin"
+    },
+    {
+        "username": "gilmer",
+        "email": "gilmer@test.com",
+        "password": "password",
+        "role": "admin"
+    },
+    {
+        "username": "pedro",
+        "email": "pedro@test.com",
+        "password": "password",
+        "role": "admin"
+    },
+    {
+        "username": "raheem",
+        "email": "raheem@test.com",
+        "password": "password",
+        "role": "admin"
+    },
+    {
+        "username": "freddy",
+        "email": "freddy@test.com",
+        "password": "password",
+        "role": "admin"
     }
 ]
